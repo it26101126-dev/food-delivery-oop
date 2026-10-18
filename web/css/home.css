@@ -1,0 +1,256 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 570px;
+  align-items: center;
+  gap: 30px;
+  padding: 45px 0;
+}
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  animation: reveal 0.65s ease both;
+}
+.hero h1 {
+  font-size: clamp(3.5rem, 6.6vw, 5.8rem);
+  line-height: 1.03;
+  letter-spacing: -3px;
+}
+.hero h1 em {
+  color: var(--orange);
+  font-weight: normal;
+}
+.hero-description {
+  max-width: 390px;
+  font-size: 15px;
+  line-height: 1.85;
+  margin-bottom: 27px;
+}
+.hero .actions {
+  margin-bottom: 30px;
+}
+.hero-proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.proof-icon {
+  width: 35px;
+  height: 35px;
+  background: #e6efde;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #3f6035;
+  font-size: 18px;
+}
+.hero-art {
+  position: relative;
+  height: 440px;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hero-disc {
+  width: 390px;
+  height: 390px;
+  background: #ffdfbf;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  right: 12px;
+  z-index: -1;
+}
+.hero-disc::before {
+  content: "";
+  position: absolute;
+  inset: 19px;
+  border: 1px dashed #eaa668;
+  border-radius: 50%;
+}
+.hero-rider {
+  position: absolute;
+  width: 105%;
+  max-width: none;
+  bottom: 23px;
+  left: -2%;
+  animation: hero-ride 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  filter: drop-shadow(0 17px 8px #8b481621);
+}
+.floating-label {
+  position: absolute;
+  background: white;
+  border: 1px solid var(--line);
+  padding: 12px 17px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px #66401912;
+  font-size: 11px;
+  z-index: 2;
+}
+.floating-label strong {
+  display: block;
+  font-size: 13px;
+}
+.floating-label.top {
+  top: 13px;
+  left: 5px;
+  transform: rotate(-5deg);
+}
+.floating-label.bottom {
+  right: 4px;
+  bottom: 18px;
+  transform: rotate(4deg);
+}
+.floating-label b {
+  color: var(--orange);
+}
+.service-strip {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  padding: 22px 10px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  color: #6b6258;
+}
+.service-strip span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.service-strip i {
+  font-style: normal;
+  color: var(--orange);
+  font-size: 18px;
+}
+.how-section {
+  background: #f3ede4;
+  border-radius: 24px;
+  margin-top: 32px;
+  padding: 38px;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.how-grid b {
+  color: var(--orange);
+  font-size: 13px;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 15px;
+}
+.how-grid p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+.how-section > h2 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+.home-cta {
+  margin: 50px 0 20px;
+  padding: 38px;
+  background: var(--orange);
+  border-radius: 22px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.home-cta h2 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 30px;
+  margin: 0;
+}
+.home-cta p {
+  color: #ffe0ca;
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+.home-cta .button {
+  background: white;
+  color: var(--orange);
+}
+@keyframes hero-ride {
+  from {
+    transform: translateX(-110%) rotate(-4deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 900px) {
+  .hero {
+    gap: 0;
+    min-height: 510px;
+  }
+  .hero-art {
+    height: 340px;
+  }
+  .hero-disc {
+    width: 290px;
+    height: 290px;
+  }
+  .hero h1 {
+    font-size: 58px;
+  }
+  .hero-rider {
+    bottom: 35px;
+  }
+}
+@media (max-width: 650px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 35px 0 15px;
+  }
+  .hero h1 {
+    font-size: 64px;
+  }
+  .hero-art {
+    width: 100%;
+    max-width: 430px;
+    margin: 20px auto 0;
+    height: 320px;
+  }
+  .hero-disc {
+    right: 30px;
+  }
+  .hero-rider {
+    bottom: 15px;
+  }
+  .service-strip {
+    flex-wrap: wrap;
+    font-size: 11px;
+  }
+  .how-section {
+    padding: 28px;
+  }
+  .how-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-cta {
+    flex-direction: column;
+    align-items: start;
+    padding: 28px;
+  }
+}

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.fooddelivery.Main
+Class-Path: ../lib/gson-2.13.2.jar
+

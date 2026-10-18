@@ -1,0 +1,6 @@
+build/
+data/
+app/*.jar
+*.log
+__pycache__/
+team-handoff/*.zip

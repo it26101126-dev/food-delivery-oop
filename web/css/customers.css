@@ -1,0 +1,155 @@
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 55px 0;
+  min-height: 640px;
+}
+.auth-story {
+  padding: 35px 20px 35px 0;
+}
+.auth-story h1 {
+  font-size: 56px;
+}
+.auth-story h1 em {
+  color: var(--orange);
+  font-weight: normal;
+}
+.auth-story img {
+  height: 260px;
+  object-fit: contain;
+  margin: auto;
+  animation: hero-ride 1.4s ease both;
+}
+.auth-story p {
+  max-width: 380px;
+}
+.auth-box {
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+}
+.auth-box h2 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 32px;
+}
+.auth-box .button[type="submit"] {
+  width: 100%;
+  margin-top: 6px;
+}
+.auth-switch {
+  margin: 22px 0 0;
+  font-size: 13px;
+  text-align: center;
+}
+.password-field {
+  position: relative;
+}
+.password-field input {
+  padding-right: 70px;
+}
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  border: 0;
+  background: #f7f1e9;
+  padding: 5px 9px;
+  border-radius: 6px;
+  color: #6b5040;
+  font-size: 12px;
+}
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 28px;
+}
+.profile-summary {
+  background: #fff0df;
+  padding: 30px;
+  border-radius: 22px;
+  height: fit-content;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  background: var(--orange);
+  border-radius: 50%;
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.danger-zone {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.dashboard-card {
+  padding: 28px;
+  display: block;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.dashboard-card:hover {
+  transform: translateY(-4px);
+}
+.dashboard-card .number {
+  font-size: 13px;
+  color: var(--orange);
+  display: block;
+  margin-bottom: 25px;
+}
+.dashboard-card h3 {
+  font-size: 21px;
+}
+.dashboard-card p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+.account-strip {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+@media (max-width: 800px) {
+  .auth-layout {
+    gap: 25px;
+  }
+  .auth-story h1 {
+    font-size: 43px;
+  }
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+    padding: 30px 0;
+  }
+  .auth-story {
+    display: none;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .account-strip {
+    align-items: start;
+    flex-direction: column;
+  }
+}
