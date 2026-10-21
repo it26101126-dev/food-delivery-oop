@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>My orders | FoodDelivery</title>
+    <meta name="theme-color" content="#ce4b14" />
+    <link rel="icon" href="/images/favicon.svg" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/orders.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="site-header"></div>
+    <main id="main">
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow">FROM THE KITCHEN TO YOUR DOOR</p>
+          <h1>Your delicious journeys.</h1>
+          <p>
+            Follow your order, revisit your favourites and see what’s on its
+            way.
+          </p>
+        </div>
+        <div class="order-filter">
+          <button class="active" data-filter="all">All orders</button
+          ><button data-filter="active">In progress</button
+          ><button data-filter="delivered">Delivered</button
+          ><button data-filter="cancelled">Cancelled</button
+          ><button id="refresh-orders">↻ Refresh status</button>
+        </div>
+        <div id="orders-list"><p class="loading">Finding your orders…</p></div>
+      </div>
+    </main>
+    <div id="site-footer"></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      ><p class="notice">
+        Please enable JavaScript to use the menu, account and ordering features.
+      </p></noscript
+    >
+    <script type="module" src="/js/orders.js"></script>
+  </body>
+</html>
