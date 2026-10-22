@@ -1,0 +1,17 @@
+.restaurant-card .food-image {
+  height: 240px;
+}
+.restaurant-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 12px;
+  margin-top: 18px;
+}
+.restaurant-card h3 {
+  font-size: 24px;
+}
+.restaurant-card .card-bottom {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
