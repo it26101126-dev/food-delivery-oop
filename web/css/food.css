@@ -1,0 +1,20 @@
+.menu-tools {
+  display: flex;
+  gap: 15px;
+  align-items: end;
+  flex-wrap: wrap;
+  margin: 0 0 30px;
+}
+.menu-tools .field {
+  margin: 0;
+  flex: 1;
+  min-width: 180px;
+}
+.menu-tools .field:first-child {
+  flex: 2;
+}
+.menu-count {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
