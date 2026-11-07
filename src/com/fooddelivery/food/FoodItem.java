@@ -67,4 +67,4 @@ public class FoodItem {
   public String getLabel() {
     return name;
   }
-}
+}//hkgs
