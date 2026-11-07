@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>The menu | FoodDelivery</title>
+    <meta name="theme-color" content="#ce4b14" />
+    <link rel="icon" href="/images/favicon.svg" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/foods.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="site-header"></div>
+    <main id="main">
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow">WHAT ARE YOU CRAVING?</p>
+          <h1>Your next favourite.</h1>
+          <p>
+            Comfort food, fresh bowls and everything in between. Build your
+            basket from one restaurant at a time.
+          </p>
+        </div>
+        <div class="menu-tools">
+          <div class="field">
+            <label for="food-search">Find a meal</label
+            ><input
+              id="food-search"
+              type="search"
+              placeholder="Search burgers, rice, pizza…"
+            />
+          </div>
+          <div class="field">
+            <label for="restaurant-filter">Restaurant</label
+            ><select id="restaurant-filter">
+              <option value="">All restaurants</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="category-filter">Category</label
+            ><select id="category-filter">
+              <option value="">Every craving</option>
+            </select>
+          </div>
+        </div>
+        <p class="menu-count" id="menu-count" role="status"></p>
+        <div id="food-list" class="food-grid">
+          <p class="loading">Loading the menu…</p>
+        </div>
+      </div>
+    </main>
+    <div id="site-footer"></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      ><p class="notice">
+        Please enable JavaScript to use the menu, account and ordering features.
+      </p></noscript
+    >
+    <script type="module" src="/js/foods.js"></script>
+  </body>
+</html>
