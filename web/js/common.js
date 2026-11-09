@@ -238,7 +238,7 @@ function shell() {
     ["/reviews", "Reviews"],
   ];
   document.querySelector("#site-header").innerHTML =
-    `<header class="site-header"><div class="wrap header-inner"><a class="brand" href="/"><b class="brand-mark">f</b>Food<span>Delivery.</span></a><nav class="site-nav" id="site-nav" aria-label="Main navigation">${links.map(([href, label]) => `<a href="${href}" class="${path === href ? "active" : ""}">${label}</a>`).join("")}${user?.role === "MANAGER" ? '<a href="/manage">Manage</a>' : ""}</nav><div class="nav-actions"><a class="cart-link" href="/cart" aria-label="Shopping basket"><span class="cart-word">Basket</span><span class="cart-count">0</span></a><a class="button small" href="${user ? "/dashboard" : "/login"}">${user ? "My account" : "Log in"}</a><button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button></div></div></header>`;
+    `<header class="site-header"><div class="wrap header-inner"><a class="brand" href="/"><b class="brand-mark">f</b>Foodi<span>.</span></a><nav class="site-nav" id="site-nav" aria-label="Main navigation">${links.map(([href, label]) => `<a href="${href}" class="${path === href ? "active" : ""}">${label}</a>`).join("")}${user?.role === "MANAGER" ? '<a href="/manage">Manage</a>' : ""}</nav><div class="nav-actions"><a class="cart-link" href="/cart" aria-label="Shopping basket"><span class="cart-word">Basket</span><span class="cart-count">0</span></a><a class="button small" href="${user ? "/dashboard" : "/login"}">${user ? "My account" : "Log in"}</a><button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button></div></div></header>`;
   document.querySelector(".nav-toggle").onclick = (event) => {
     const nav = document.querySelector("#site-nav");
     nav.classList.toggle("open");
@@ -248,7 +248,7 @@ function shell() {
     );
   };
   document.querySelector("#site-footer").innerHTML =
-    `<footer class="footer"><div class="wrap footer-inner"><div><a class="brand" href="/">Food<span>Delivery.</span></a><p>Local flavours. Good company. Food that feels like home.</p></div><div class="footer-links"><a href="/foods">Our menu</a><a href="/restaurants">Restaurants</a><a href="/reviews">Reviews</a></div></div></footer>`;
+    `<footer class="footer"><div class="wrap footer-inner"><div><a class="brand" href="/">Foodi<span>.</span></a><p>Local flavours. Good company. Food that feels like home.</p></div><div class="footer-links"><a href="/foods">Our menu</a><a href="/restaurants">Restaurants</a><a href="/reviews">Reviews</a></div></div></footer>`;
   updateCartCount();
 }
 export const ready = refreshSession()
