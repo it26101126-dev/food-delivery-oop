@@ -1,36 +1,65 @@
+
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Set character encoding -->
     <meta charset="UTF-8" />
+
+    <!-- Make the website responsive -->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Website page title -->
     <title>Restaurants | FoodDelivery</title>
+
+    <!-- Set browser theme color -->
     <meta name="theme-color" content="#ce4b14" />
+
+    <!-- Website favicon -->
     <link rel="icon" href="/images/favicon.svg" />
+
+    <!-- Link common and restaurant CSS files -->
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/restaurants.css" />
   </head>
   <body>
+    <!-- Skip directly to the main content -->
     <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Display website header -->
     <div id="site-header"></div>
+
+    <!-- Main restaurant page content -->
     <main id="main">
       <div class="wrap">
+
+        <!-- Restaurant page heading -->
         <div class="page-head">
           <p class="eyebrow">MEET YOUR LOCAL FAVOURITES</p>
           <h1>Good food starts here.</h1>
           <p>Discover the kitchens behind your next delicious meal.</p>
         </div>
+
+        <!-- Display restaurant cards dynamically using JavaScript -->
         <div id="restaurant-list" class="restaurant-grid">
           <p class="loading">Finding restaurants…</p>
         </div>
       </div>
     </main>
+
+    <!-- Display website footer -->
     <div id="site-footer"></div>
+
+    <!-- Display notification messages -->
     <div id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Show message if JavaScript is disabled -->
     <noscript
       ><p class="notice">
         Please enable JavaScript to use the menu, account and ordering features.
       </p></noscript
     >
+
+    <!-- Load JavaScript module for restaurant functionality -->
     <script type="module" src="/js/restaurants.js"></script>
   </body>
 </html>
