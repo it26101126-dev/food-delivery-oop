@@ -9,6 +9,7 @@ import javax.crypto.spec.PBEKeySpec;
 public class Passwords {
   private static final int ROUNDS = 600000;
 
+  // Save a password as a salt and a one-way hash, not as plain text.
   public static String hash(String password) {
     if (password == null || password.length() < 8 || password.length() > 128)
       throw new IllegalArgumentException("Password must have 8 to 128 characters.");
@@ -19,6 +20,7 @@ public class Passwords {
         + Base64.getEncoder().encodeToString(derive(password, salt));
   }
 
+  // Compare a password with the saved salt and hash.
   public static boolean matches(String password, String saved) {
     if (password == null || password.length() > 128 || saved == null) return false;
     String[] parts = saved.split(":");
@@ -32,6 +34,7 @@ public class Passwords {
     }
   }
 
+  // Create a fixed-length hash from the password and its salt.
   private static byte[] derive(String password, byte[] salt) {
     PBEKeySpec key = new PBEKeySpec(password.toCharArray(), salt, ROUNDS, 256);
     try {

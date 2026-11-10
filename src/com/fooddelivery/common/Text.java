@@ -7,6 +7,7 @@ import java.util.UUID;
 public final class Text {
   private Text() {}
 
+  // Check that text is present and does not exceed the allowed length.
   public static String required(String value, String label, int max) {
     if (value == null || value.trim().isEmpty())
       throw new IllegalArgumentException(label + " is required.");
@@ -15,6 +16,7 @@ public final class Text {
     return result;
   }
 
+  // Clean an email address and check its basic format.
   public static String email(String value) {
     String email = required(value, "Email", 150).toLowerCase(Locale.ROOT);
     if (!email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"))
@@ -22,6 +24,7 @@ public final class Text {
     return email;
   }
 
+  // Check that a phone number contains the allowed digits.
   public static String phone(String value) {
     String phone = required(value, "Phone", 16);
     if (!phone.matches("[+]?[0-9]{9,15}"))
@@ -29,10 +32,12 @@ public final class Text {
     return phone;
   }
 
+  // Make a new ID from a prefix and a random value.
   public static String id(String prefix) {
     return prefix + "-" + UUID.randomUUID();
   }
 
+  // Convert a price to cents and check that it is in range.
   public static long cents(String value) {
     try {
       long result = new BigDecimal(value).movePointRight(2).longValueExact();

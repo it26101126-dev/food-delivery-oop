@@ -1,3 +1,4 @@
+/* Customer login and registration layout */
 .auth-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -61,6 +62,7 @@
   color: #6b5040;
   font-size: 12px;
 }
+/* Customer profile summary and account controls */
 .profile-layout {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -89,6 +91,7 @@
   padding-top: 25px;
   border-top: 1px solid var(--line);
 }
+/* Account dashboard cards and order totals */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -123,6 +126,7 @@
   align-items: center;
   margin-bottom: 30px;
 }
+/* Adjust account layouts for tablets */
 @media (max-width: 800px) {
   .auth-layout {
     gap: 25px;
@@ -137,6 +141,7 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+/* Stack account content on small screens */
 @media (max-width: 600px) {
   .auth-layout {
     grid-template-columns: 1fr;

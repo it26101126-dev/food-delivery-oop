@@ -10,17 +10,20 @@ public class FileStore {
   public final Gson json = new GsonBuilder().setPrettyPrinting().create();
   private final Path folder;
 
+  // Set the data folder and create it if it does not exist.
   public FileStore(String folder) throws IOException {
     this.folder = Path.of(folder);
     Files.createDirectories(this.folder);
   }
 
+  // Read a data file, or return an empty list if it is not there yet.
   public String read(String name) throws IOException {
     Path file = folder.resolve(name);
     if (!Files.exists(file)) return "[]";
     return Files.readString(file);
   }
 
+  // Write to a temporary file before replacing the saved data file.
   public void write(String name, String text) throws IOException {
     Path file = folder.resolve(name);
     Path temporary = Files.createTempFile(folder, "saving-", ".tmp");
@@ -37,10 +40,12 @@ public class FileStore {
     }
   }
 
+  // Check whether the demo data has already been created.
   public boolean seeded() {
     return Files.exists(folder.resolve("demo-ready.txt"));
   }
 
+  // Save a marker so the program knows the demo data was created.
   public void markSeeded() throws IOException {
     write("demo-ready.txt", "Demo data created.\n");
   }
