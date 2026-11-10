@@ -12,6 +12,7 @@ import java.util.*;
 // Shared presentation helper: turn model data into the fields used by JavaScript.
 // Business rules stay in the six Manager classes. These maps are only JSON responses.
 public class WebsiteData {
+  // Return the customer details that may be sent to the website.
   public static Map<String, Object> customer(Customer customer) {
     return Map.of(
         "id",
@@ -28,6 +29,7 @@ public class WebsiteData {
         customer.getRole());
   }
 
+  // Build website data for foods, including their restaurant details.
   public static List<Map<String, Object>> foods(FoodManager foods, RestaurantManager restaurants)
       throws IOException {
     List<Map<String, Object>> result = new ArrayList<>();
@@ -49,6 +51,7 @@ public class WebsiteData {
     return result;
   }
 
+  // Add each reviewer's name to the review data.
   public static List<Map<String, Object>> reviews(ReviewManager reviews, CustomerManager customers)
       throws IOException {
     List<Map<String, Object>> result = new ArrayList<>();
@@ -69,6 +72,7 @@ public class WebsiteData {
     return result;
   }
 
+  // Build website data for one order and its items.
   public static Map<String, Object> order(
       FoodOrder order, OrderManager orders, RestaurantManager restaurants) throws IOException {
     Map<String, Object> data = new LinkedHashMap<>();
@@ -102,6 +106,7 @@ public class WebsiteData {
     return data;
   }
 
+  // Convert several orders into the format used by the website.
   public static List<Object> orders(
       List<FoodOrder> records, OrderManager orders, RestaurantManager restaurants)
       throws IOException {

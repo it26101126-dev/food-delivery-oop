@@ -2,36 +2,23 @@ package com.fooddelivery.order;
 
 import java.util.List;
 
+/** Stores the details of a food order. */
 public class FoodOrder {
+  // Unique order identifier.
   private String id;
 
   public String getId() {
     return id;
   }
 
-  private final String customerId,
-      restaurantId,
-      customerName,
-      address,
-      phone,
-      status,
-      createdAt,
-      requestKey;
+  // Order and customer details.
+  private final String customerId,restaurantId,customerName,address,phone,status,createdAt,requestKey;
+  // Monetary values are stored in cents.
   private final long deliveryCents;
   private final List<OrderLine> items;
 
-  public FoodOrder(
-      String id,
-      String customerId,
-      String restaurantId,
-      String customerName,
-      String address,
-      String phone,
-      String status,
-      String createdAt,
-      String requestKey,
-      long deliveryCents,
-      List<OrderLine> items) {
+  // Initializes all order details.
+  public FoodOrder(String id, String customerId, String restaurantId, String customerName, String address, String phone, String status, String createdAt, String requestKey, long deliveryCents,List<OrderLine> items){
     this.id = id;
     this.customerId = customerId;
     this.restaurantId = restaurantId;
@@ -42,9 +29,11 @@ public class FoodOrder {
     this.createdAt = createdAt;
     this.requestKey = requestKey;
     this.deliveryCents = deliveryCents;
+    // Makes an unmodifiable copy of the supplied list.
     this.items = List.copyOf(items);
   }
 
+  // Getter methods provide access to the private fields.
   public String getCustomerId() {
     return customerId;
   }
@@ -85,16 +74,19 @@ public class FoodOrder {
     return items;
   }
 
+  // Adds the total price of every order line to calculate the subtotal.
   public long getSubtotalCents() {
     long total = 0;
-    for (OrderLine line : items) total += line.getTotalCents();
+    for(OrderLine line : items) total += line.getTotalCents();
     return total;
   }
 
+  // Adds the delivery charge to the food subtotal.
   public long getTotalCents() {
-    return getSubtotalCents() + deliveryCents;
+    return getSubtotalCents()+deliveryCents;
   }
 
+  // Returns a readable order label.
   public String getLabel() {
     return "Order " + getId();
   }

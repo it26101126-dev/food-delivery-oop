@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>My profile | FoodDelivery</title>
+    <title>My profile | Foodi</title>
     <meta name="theme-color" content="#ce4b14" />
     <link rel="icon" href="/images/favicon.svg" />
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/customers.css" />
   </head>
   <body>
+    <!-- Shared site header is filled in by the website scripts. -->
     <a class="skip-link" href="#main">Skip to content</a>
     <div id="site-header"></div>
     <main id="main">
@@ -19,6 +20,7 @@
           <h1>Make yourself at home.</h1>
           <p>Keep your delivery details up to date.</p>
         </div>
+        <!-- JavaScript fills this area with the customer's profile. -->
         <div id="profile-content">
           <p class="loading">Loading your profile…</p>
         </div>
@@ -26,11 +28,13 @@
     </main>
     <div id="site-footer"></div>
     <div id="toast" role="status" aria-live="polite"></div>
+    <!-- Show this message if JavaScript is turned off. -->
     <noscript
       ><p class="notice">
         Please enable JavaScript to use the menu, account and ordering features.
       </p></noscript
     >
+    <!-- Load customer profile actions. -->
     <script type="module" src="/js/customers.js"></script>
   </body>
 </html>

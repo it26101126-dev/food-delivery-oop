@@ -43,6 +43,7 @@ public class WebServer implements HttpHandler {
     public List<OrderManager.CartItem> items;
   }
 
+  // Connect the data helpers and choose the local server port.
   public WebServer(
       FileStore files,
       CustomerManager customers,
@@ -62,6 +63,7 @@ public class WebServer implements HttpHandler {
     this.port = port;
   }
 
+  // Check each web request and send back a page, result, or error.
   @Override
   public void handle(HttpExchange request) throws IOException {
     try {
@@ -111,6 +113,7 @@ public class WebServer implements HttpHandler {
     }
   }
 
+  // Send each API path to the matching customer or other module action.
   private Object route(HttpExchange request, String path, String method, Form f, Session session)
       throws IOException {
     // MEMBER 1: customer accounts.
@@ -238,6 +241,7 @@ public class WebServer implements HttpHandler {
     throw new Problem(404, "Page or API action not found.");
   }
 
+  // Get the record ID from a path, if one is included.
   private String recordId(String path, String base) {
     if (path.equals(base)) return null;
     String id = path.substring(base.length() + 1);
@@ -245,21 +249,25 @@ public class WebServer implements HttpHandler {
     return id;
   }
 
+  // Make a small response containing a message.
   private Map<String, String> message(String text) {
     return Map.of("message", text);
   }
 
+  // Find the signed-in customer or report that login is needed.
   private Customer requireCustomer(Session session) throws IOException {
     Customer user = customers.findCustomer(session.customerId);
     if (user == null) throw new Problem(401, "Please log in.");
     return user;
   }
 
+  // Check that the signed-in customer has the manager role.
   private void requireManager(Session session) throws IOException {
     if (!requireCustomer(session).getRole().equals("MANAGER"))
       throw new Problem(403, "Manager access only.");
   }
 
+  // Return the current session token and customer information.
   private Object sessionInfo(Session session) throws IOException {
     Customer user = customers.findCustomer(session.customerId);
     Map<String, Object> result = new LinkedHashMap<>();
@@ -268,6 +276,7 @@ public class WebServer implements HttpHandler {
     return result;
   }
 
+  // Read the session ID from the request cookie.
   private String cookieId(HttpExchange request) {
     String cookies = request.getRequestHeaders().getFirst("Cookie");
     if (cookies != null)
@@ -278,6 +287,7 @@ public class WebServer implements HttpHandler {
     return "";
   }
 
+  // Reuse a valid session or create a new one.
   private Session session(HttpExchange request) {
     // Remove expired sessions before accepting a new request.
     long now = System.currentTimeMillis();
@@ -289,6 +299,7 @@ public class WebServer implements HttpHandler {
     return session;
   }
 
+  // Create a session and send its cookie to the browser.
   private Session createSession(HttpExchange request) {
     Session session = new Session();
     String id = UUID.randomUUID().toString();
@@ -299,6 +310,7 @@ public class WebServer implements HttpHandler {
     return session;
   }
 
+  // Remove the session and clear its browser cookie.
   private void removeSession(HttpExchange request) {
     sessions.remove(cookieId(request));
     request
@@ -306,6 +318,7 @@ public class WebServer implements HttpHandler {
         .set("Set-Cookie", "FDSESSION=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax");
   }
 
+  // Convert a response value to JSON and send it to the browser.
   private void sendJson(HttpExchange request, int status, Object value) throws IOException {
     byte[] bytes = files.json.toJson(value).getBytes(StandardCharsets.UTF_8);
     request.getResponseHeaders().set("Content-Type", "application/json; charset=utf-8");
@@ -313,6 +326,7 @@ public class WebServer implements HttpHandler {
     request.getResponseBody().write(bytes);
   }
 
+  // Find the requested page inside the web folder and send it.
   private void servePage(HttpExchange request, String path) throws IOException {
     if (!request.getRequestMethod().equals("GET"))
       throw new Problem(405, "Use GET to read a page.");

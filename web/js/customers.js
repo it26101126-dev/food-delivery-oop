@@ -10,11 +10,14 @@ import {
   refreshSession,
   showEmpty,
 } from "./common.js";
+// Wait until the shared page setup is ready before using its helpers.
 await ready;
 const authBox = document.querySelector("#auth-box");
 if (authBox) {
+  // Show the login or registration form based on the current page.
   const register = location.pathname === "/register";
   authBox.innerHTML = `<p class="eyebrow">${register ? "JOIN THE TABLE" : "GOOD TO SEE YOU AGAIN"}</p><h2>${register ? "Create your account" : "Welcome back."}</h2><p class="small-text">${register ? "A few details, then you’re ready to order." : "Your next delicious meal starts here."}</p>${new URLSearchParams(location.search).has("registered") ? '<p class="notice success">Account created. Log in to get started.</p>' : ""}<form id="auth-form"><div class="form-error" role="alert"></div>${register ? '<div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" maxlength="100" required></div>' : ""}<div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="username" maxlength="150" required></div>${register ? '<div class="form-row"><div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="0771234567" maxlength="16" required></div><div class="field"><label for="address">Delivery address</label><input id="address" name="address" autocomplete="street-address" maxlength="250" required></div></div>' : ""}<div class="field"><label for="password">Password</label><div class="password-field"><input id="password" name="password" type="password" autocomplete="${register ? "new-password" : "current-password"}" ${register ? 'minlength="8"' : ""} required><button class="password-toggle" type="button" aria-label="Show password">Show</button></div></div>${register ? '<div class="field"><label for="confirmPassword">Confirm password</label><input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required></div>' : ""}<button class="button" type="submit">${register ? "Create account" : "Log in"} →</button></form><p class="auth-switch">${register ? 'Already have an account? <a class="text-link" href="/login">Log in</a>' : 'New around here? <a class="text-link" href="/register">Create an account</a>'}</p>`;
+  // Let the user show or hide the password while typing.
   authBox.querySelector(".password-toggle").onclick = (event) => {
     const input = document.querySelector("#password");
     const visible = input.type === "password";
@@ -25,6 +28,7 @@ if (authBox) {
       visible ? "Hide password" : "Show password",
     );
   };
+  // Send the form to the matching account API and show any errors.
   document.querySelector("#auth-form").onsubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget,
@@ -59,8 +63,10 @@ if (authBox) {
 }
 const profile = document.querySelector("#profile-content");
 if (profile && requireUser()) {
+  // Fill the profile page with the signed-in customer's details.
   const user = session.user;
   profile.innerHTML = `<div class="profile-layout"><section class="panel"><h2>Your details</h2><form id="profile-form"><div class="form-error" role="alert"></div><div class="field"><label for="name">Full name</label><input id="name" name="name" value="${esc(user.name)}" autocomplete="name" maxlength="100" required></div><div class="field"><label for="email">Email address</label><input id="email" type="email" value="${esc(user.email)}" readonly><small>Your sign-in email stays the same.</small></div><div class="form-row"><div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" value="${esc(user.phone)}" maxlength="16" autocomplete="tel" required></div><div class="field"><label for="address">Delivery address</label><input id="address" name="address" value="${esc(user.address)}" maxlength="250" autocomplete="street-address" required></div></div><div class="actions"><button class="button" type="submit">Save my details</button><a class="button secondary" href="/dashboard">Back to account</a></div></form></section><aside class="profile-summary"><div class="avatar">${esc(user.name[0])}</div><h3>${esc(user.name)}</h3><p class="small-text">${user.role === "MANAGER" ? "Manager account" : "Ready for your next great meal."}</p><a class="text-link" href="/orders">View my orders →</a>${user.role === "CUSTOMER" ? '<div class="danger-zone"><h3>Close your account</h3><p class="small-text">Complete or cancel active orders first. Completed order history is retained.</p><button class="button small secondary" id="delete-account">Delete account</button></div>' : ""}</aside></div>`;
+  // Save updated profile details through the API.
   document.querySelector("#profile-form").onsubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget,
@@ -76,6 +82,7 @@ if (profile && requireUser()) {
       button.disabled = false;
     }
   };
+  // Ask the customer to confirm before sending an account deletion request.
   document.querySelector("#delete-account")?.addEventListener("click", () => {
     const d = document.createElement("dialog");
     d.innerHTML =
@@ -105,6 +112,7 @@ if (profile && requireUser()) {
 const dashboard = document.querySelector("#dashboard-content");
 if (dashboard && requireUser()) {
   try {
+    // Load the customer's orders to calculate the dashboard totals.
     const orders = await api("/api/orders"),
       user = session.user;
     const own = orders.filter((o) => o.customerId === user.id),
@@ -151,7 +159,9 @@ if (dashboard && requireUser()) {
         user.role === "MANAGER" ? "/manage" : "/cart",
       ],
     ];
+    // Show account links and the customer's order totals.
     dashboard.innerHTML = `<div class="page-head"><p class="eyebrow">YOUR FOODDELIVERY ACCOUNT</p><h1>Hello, ${esc(user.name.split(" ")[0])}.</h1><div class="account-strip"><p>What sounds good today?</p><button class="button secondary small" id="logout">Log out</button></div><div class="stats-row"><div class="stat"><strong>${own.length}</strong><span>Your orders</span></div><div class="stat"><strong>${active.length}</strong><span>In progress</span></div><div class="stat"><strong>${own.filter((o) => o.status === "DELIVERED").length}</strong><span>Delivered with care</span></div></div></div><div class="dashboard-grid">${links.map(([n, title, text, url]) => `<a class="card dashboard-card" href="${url}"><span class="number">${n} /</span><h3>${title} ↗</h3><p>${text}</p></a>`).join("")}</div>`;
+    // Log the customer out when the button is clicked.
     document.querySelector("#logout").onclick = async () => {
       try {
         await api("/api/logout", "POST", {});

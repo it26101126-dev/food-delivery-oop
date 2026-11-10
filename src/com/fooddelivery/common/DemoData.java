@@ -5,6 +5,7 @@ import com.fooddelivery.food.*;
 import com.fooddelivery.restaurant.*;
 import java.nio.file.*;
 
+// Add sample customer, restaurant, and food records for the demo.
 public class DemoData {
   private final CustomerManager customers;
 
@@ -24,6 +25,7 @@ public class DemoData {
     this.directory = Path.of(directory);
   }
 
+  // Create the sample records only when they have not been set up before.
   public void run(String... args) throws Exception {
     Files.createDirectories(directory);
     // Marker prevents deliberately deleted demo records from reappearing on restart.
@@ -139,6 +141,7 @@ public class DemoData {
       long price,
       String image)
       throws Exception {
+    // Avoid adding a sample food that is already saved.
     if (foods.findFood(id) == null)
       foods.addRecord(
           new FoodItem(id, restaurant, name, category, description, price, image, true));

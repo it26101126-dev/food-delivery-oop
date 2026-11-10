@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Restaurants | FoodDelivery</title>
+    <meta name="theme-color" content="#ce4b14" />
+    <link rel="icon" href="/images/favicon.svg" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/restaurants.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="site-header"></div>
+    <main id="main">
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow">MEET YOUR LOCAL FAVOURITES</p>
+          <h1>Good food starts here.</h1>
+          <p>Discover the kitchens behind your next delicious meal.</p>
+        </div>
+        <div id="restaurant-list" class="restaurant-grid">
+          <p class="loading">Finding restaurants…</p>
+        </div>
+      </div>
+    </main>
+    <div id="site-footer"></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      ><p class="notice">
+        Please enable JavaScript to use the menu, account and ordering features.
+      </p></noscript
+    >
+    <script type="module" src="/js/restaurants.js"></script>
+  </body>
+</html>

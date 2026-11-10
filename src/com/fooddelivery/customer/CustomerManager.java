@@ -8,6 +8,7 @@ public class CustomerManager {
 
   private final FileStore files;
 
+  // Use the shared file helper to read and save customer records.
   public CustomerManager(FileStore files) {
     this.files = files;
   }
@@ -23,6 +24,7 @@ public class CustomerManager {
     }
   }
 
+  // Search the saved customer list for an ID.
   public Customer findCustomer(String id) throws IOException {
     for (Customer item : readRecords()) {
       if (item.getId().equals(id)) return item;
@@ -73,6 +75,7 @@ public class CustomerManager {
       String password,
       String confirmPassword)
       throws IOException {
+    // Check and clean the details before saving a new account.
     name = Text.required(name, "Name", 100);
     email = Text.email(email);
     phone = Text.phone(phone);
@@ -90,6 +93,7 @@ public class CustomerManager {
     return customer;
   }
 
+  // Find a customer whose email and password match.
   public Customer login(String email, String password) throws IOException {
     email = Text.email(email);
     for (Customer customer : readRecords()) {
@@ -101,6 +105,7 @@ public class CustomerManager {
 
   public Customer updateCustomer(Customer current, String name, String phone, String address)
       throws IOException {
+    // Keep account details that are not being changed.
     Customer updated =
         new Customer(
             current.getId(),
@@ -114,6 +119,7 @@ public class CustomerManager {
     return updated;
   }
 
+  // Check the account and password before removing the customer.
   public void deleteCustomer(Customer customer, String password) throws IOException {
     if (customer.getRole().equals("MANAGER"))
       throw new IllegalArgumentException("The demo manager account cannot be deleted.");

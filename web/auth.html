@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Your account | FoodDelivery</title>
+    <title>Your account | Foodi</title>
     <meta name="theme-color" content="#ce4b14" />
     <link rel="icon" href="/images/favicon.svg" />
     <link rel="stylesheet" href="/css/common.css" />
@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
+    <!-- Shared site header is filled in by the website scripts. -->
     <a class="skip-link" href="#main">Skip to content</a>
     <div id="site-header"></div>
     <main id="main">
+      <!-- JavaScript fills this area with the login or registration form. -->
       <div class="wrap auth-layout">
         <section class="auth-story">
           <p class="eyebrow">COME FOR THE FOOD. STAY FOR THE FEELING.</p>
@@ -34,11 +36,13 @@
     </main>
     <div id="site-footer"></div>
     <div id="toast" role="status" aria-live="polite"></div>
+    <!-- Show this message if JavaScript is turned off. -->
     <noscript
       ><p class="notice">
         Please enable JavaScript to use the menu, account and ordering features.
       </p></noscript
     >
+    <!-- Load customer account form and event handling. -->
     <script type="module" src="/js/customers.js"></script>
   </body>
 </html>
