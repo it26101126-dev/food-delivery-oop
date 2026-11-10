@@ -1,6 +1,9 @@
+/* Set the restaurant image height */
 .restaurant-card .food-image {
   height: 240px;
 }
+
+/* Arrange restaurant details using Flexbox */
 .restaurant-details {
   display: flex;
   justify-content: space-between;
@@ -8,9 +11,13 @@
   font-size: 12px;
   margin-top: 18px;
 }
+
+/* Set restaurant card heading size */
 .restaurant-card h3 {
   font-size: 24px;
 }
+
+/* Style the bottom section with a top border and spacing */
 .restaurant-card .card-bottom {
   border-top: 1px solid var(--line);
   padding-top: 18px;

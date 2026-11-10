@@ -5,10 +5,12 @@ import com.fooddelivery.food.*;
 import java.io.IOException;
 import java.util.*;
 
+// Manages restaurant records using CRUD operations and JSON file storage
 public class RestaurantManager {
 
   private final FileStore files;
 
+  // Constructor to initialize file storage
   public RestaurantManager(FileStore files) {
     this.files = files;
   }
@@ -25,6 +27,7 @@ public class RestaurantManager {
     }
   }
 
+  // Find a restaurant by its unique ID
   public Restaurant findRestaurant(String id) throws IOException {
     for (Restaurant item : readRecords()) {
       if (item.getId().equals(id)) return item;
@@ -67,10 +70,12 @@ public class RestaurantManager {
     throw new Problem(404, "Record not found.");
   }
 
+  // Return the complete list of restaurants
   public List<Restaurant> getRestaurants() throws IOException {
     return readRecords();
   }
 
+  // Validate restaurant details and save new or updated records
   private Restaurant save(
       String id,
       String name,
@@ -96,6 +101,7 @@ public class RestaurantManager {
     return item;
   }
 
+  // Prevent deletion if the restaurant has existing menu items
   public void deleteRestaurant(String id, FoodManager foods) throws IOException {
     for (FoodItem food : foods.readRecords())
       if (food.getRestaurantId().equals(id))
@@ -104,12 +110,14 @@ public class RestaurantManager {
     removeRecord(id);
   }
 
+  // Add a new restaurant with validated details
   public Restaurant addRestaurant(
       String name, String cuisine, String address, String phone, boolean open, String image)
       throws IOException {
     return save(null, name, cuisine, address, phone, open, image);
   }
 
+  // Update an existing restaurant using its ID
   public Restaurant updateRestaurant(
       String id,
       String name,
